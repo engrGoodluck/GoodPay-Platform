@@ -53,7 +53,7 @@ function Profile() {
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch("${API_URL}/api/user/profile", {
+        const response = await fetch(`${API_URL}/api/user/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -143,7 +143,7 @@ function Profile() {
       formData.append("profilePicture", file);
 
       const response = await fetch(
-        "${API_URL}/api/user/profile-picture",
+        `${API_URL}/api/user/profile-picture`,
         {
           method: "POST",
           headers: {
@@ -190,7 +190,7 @@ function Profile() {
 
     try {
       const response = await fetch(
-        "${API_URL}/api/user/profile-picture",
+        `${API_URL}/api/user/profile-picture`,
         {
           method: "DELETE",
           headers: {

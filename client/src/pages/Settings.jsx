@@ -43,7 +43,7 @@ function Settings() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("${API_URL}/api/user/profile", {
+        const response = await fetch(`${API_URL}/api/user/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -92,7 +92,7 @@ function Settings() {
     setProfileSaving(true);
 
     try {
-      const response = await fetch("${API_URL}/api/user/profile", {
+      const response = await fetch(`${API_URL}/api/user/profile`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

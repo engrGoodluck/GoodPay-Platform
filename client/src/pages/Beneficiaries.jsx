@@ -37,7 +37,7 @@ function Beneficiaries() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("${API_URL}/api/beneficiaries", {
+      const response = await fetch(`${API_URL}/api/beneficiaries`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -88,7 +88,7 @@ function Beneficiaries() {
       const response = await fetch(
         editingId
           ? `${API_URL}/api/beneficiaries/${editingId}`
-          : "${API_URL}/api/beneficiaries",
+          : `${API_URL}/api/beneficiaries`,
         {
           method: editingId ? "PATCH" : "POST",
           headers: {
