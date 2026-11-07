@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   Camera,
@@ -52,7 +53,7 @@ function Profile() {
 
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/user/profile", {
+        const response = await fetch("${API_URL}/api/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -142,7 +143,7 @@ function Profile() {
       formData.append("profilePicture", file);
 
       const response = await fetch(
-        "http://localhost:5000/api/user/profile-picture",
+        "${API_URL}/api/user/profile-picture",
         {
           method: "POST",
           headers: {
@@ -189,7 +190,7 @@ function Profile() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/user/profile-picture",
+        "${API_URL}/api/user/profile-picture",
         {
           method: "DELETE",
           headers: {
@@ -226,7 +227,7 @@ function Profile() {
     setSaving(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/user/profile", {
+      const response = await fetch(`${API_URL}/api/user/profile`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

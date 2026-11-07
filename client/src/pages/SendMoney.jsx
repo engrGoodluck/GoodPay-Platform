@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   Send,
@@ -38,9 +39,7 @@ function SendMoney() {
       }
 
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/beneficiaries",
-          {
+        const response = await fetch(`${API_URL}/api/beneficiaries`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -111,7 +110,7 @@ function SendMoney() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/transfers", {
+      const response = await fetch(`${API_URL}/api/transfers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   ArrowDownLeft,
@@ -25,9 +26,7 @@ function TransactionDetails() {
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/transactions/${id}`,
-          {
+        const response = await fetch(`${API_URL}/api/transactions/${id}`, {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("goodpay_token")}`,
             },

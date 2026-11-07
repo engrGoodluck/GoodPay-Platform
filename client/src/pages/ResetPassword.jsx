@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { ArrowRight, Eye, EyeOff, LockKeyhole } from "lucide-react";
 import "./Auth.css";
+import API_URL from "../api";
 
 function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -41,20 +42,17 @@ function ResetPassword() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/auth/reset-password",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            token,
-            password,
-          }),
+      const response = await fetch(`${API_URL}/api/auth/reset-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          email,
+          token,
+          password,
+        }),
+      });
 
       const data = await response.json();
 

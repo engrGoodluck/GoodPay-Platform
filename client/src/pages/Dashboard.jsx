@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import API_URL from "../api";
 import {
   LayoutDashboard,
   ArrowLeftRight,
@@ -113,7 +114,7 @@ function Dashboard() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/wallet", {
+        const response = await fetch(`${API_URL}/api/wallet`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -151,7 +152,7 @@ function Dashboard() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/transactions", {
+        const response = await fetch(`${API_URL}/api/transactions`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -184,7 +185,7 @@ function Dashboard() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/user/profile", {
+        const response = await fetch(`${API_URL}/api/user/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -215,7 +216,7 @@ function Dashboard() {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/api/notifications",
+          `${API_URL}/api/notifications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -250,9 +251,7 @@ function Dashboard() {
         setSummaryLoading(true);
         setSummaryError("");
 
-        const response = await fetch(
-          `http://localhost:5000/api/transactions/summary?range=${dashboardDateRange}`,
-          {
+        const response = await fetch(`${API_URL}/api/transactions/summary?range=${dashboardDateRange}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -290,9 +289,7 @@ function Dashboard() {
       }
 
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/transactions/monthly-summary",
-          {
+        const response = await fetch(`${API_URL}/api/transactions/monthly-summary`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -327,9 +324,7 @@ function Dashboard() {
       try {
         const token = sessionStorage.getItem("goodpay_token");
 
-        const response = await fetch(
-          "http://localhost:5000/api/transactions/daily-summary",
-          {
+        const response = await fetch(`${API_URL}/api/transactions/daily-summary`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

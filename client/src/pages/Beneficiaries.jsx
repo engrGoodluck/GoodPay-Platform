@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   UserRound,
@@ -36,7 +37,7 @@ function Beneficiaries() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("http://localhost:5000/api/beneficiaries", {
+      const response = await fetch("${API_URL}/api/beneficiaries", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,8 +87,8 @@ function Beneficiaries() {
     try {
       const response = await fetch(
         editingId
-          ? `http://localhost:5000/api/beneficiaries/${editingId}`
-          : "http://localhost:5000/api/beneficiaries",
+          ? `${API_URL}/api/beneficiaries/${editingId}`
+          : "${API_URL}/api/beneficiaries",
         {
           method: editingId ? "PATCH" : "POST",
           headers: {
@@ -129,7 +130,7 @@ function Beneficiaries() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/beneficiaries/${beneficiary.id}`,
+        `${API_URL}/api/beneficiaries/${beneficiary.id}`,
         {
           method: "DELETE",
           headers: {

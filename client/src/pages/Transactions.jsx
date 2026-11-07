@@ -21,6 +21,7 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import "./Transactions.css";
 
 function Transactions() {
@@ -84,7 +85,7 @@ function Transactions() {
       if (!token) return;
 
       try {
-        const response = await fetch("http://localhost:5000/api/user/profile", {
+        const response = await fetch(`${API_URL}/api/user/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -106,9 +107,7 @@ function Transactions() {
       if (!token) return;
 
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/transactions/summary",
-          {
+        const response = await fetch(`${API_URL}/api/transactions/summary`, {
             headers: { Authorization: `Bearer ${token}` },
           },
         );
@@ -154,9 +153,7 @@ function Transactions() {
         if (startDate) params.set("startDate", startDate);
         if (endDate) params.set("endDate", endDate);
 
-        const response = await fetch(
-          `http://localhost:5000/api/transactions?${params.toString()}`,
-          {
+        const response = await fetch(`${API_URL}/api/transactions?${params.toString()}`, {
             headers: { Authorization: `Bearer ${token}` },
           },
         );

@@ -7,10 +7,10 @@ const { rateLimit } = require("express-rate-limit");
 
 const pool = require("./db");
 const authRoutes = require("./routes/auth");
-const userRoutes = require('./routes/user');
-const walletRoutes = require('./routes/wallet');
-const transactionRoutes = require('./routes/transactions');
-const transferRoutes = require('./routes/transfers');
+const userRoutes = require("./routes/user");
+const walletRoutes = require("./routes/wallet");
+const transactionRoutes = require("./routes/transactions");
+const transferRoutes = require("./routes/transfers");
 const beneficiaryRoutes = require("./routes/beneficiaries");
 
 const cardRoutes = require("./routes/cards");
@@ -20,9 +20,24 @@ const app = express();
 
 app.use(helmet());
 
+const allowedOrigins = (
+  process.env.CLIENT_URLS ||
+  process.env.CLIENT_URL ||
+  "http://localhost:5173"
+)
+  .split(",")
+  .map((url) => url.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
@@ -71,10 +86,10 @@ app.get("/api/db-test", async (req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authLimiter, authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/wallet', walletRoutes);
-app.use('/api/transactions', transactionRoutes);
-app.use('/api/transfers', transferRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/wallet", walletRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/transfers", transferRoutes);
 app.use("/api/beneficiaries", beneficiaryRoutes);
 app.use("/api/cards", cardRoutes);
 app.use("/api/notifications", notificationsRoutes);

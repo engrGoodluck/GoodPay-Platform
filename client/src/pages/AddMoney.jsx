@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   Wallet,
@@ -53,7 +54,7 @@ function AddMoney() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/wallet/fund", {
+      const response = await fetch(`${API_URL}/api/wallet/fund`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

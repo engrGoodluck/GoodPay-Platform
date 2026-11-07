@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   UserRound,
@@ -42,7 +43,7 @@ function Settings() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/user/profile", {
+        const response = await fetch("${API_URL}/api/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -91,7 +92,7 @@ function Settings() {
     setProfileSaving(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/user/profile", {
+      const response = await fetch("${API_URL}/api/user/profile", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -157,7 +158,7 @@ function Settings() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/change-password",
+        `${API_URL}/api/auth/change-password`,
         {
           method: "PATCH",
           headers: {

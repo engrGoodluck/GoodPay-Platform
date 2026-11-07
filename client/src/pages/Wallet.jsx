@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import {
   Wallet as WalletIcon,
   ArrowDownToLine,
@@ -21,7 +22,7 @@ function Wallet() {
       try {
         const token = sessionStorage.getItem("goodpay_token");
 
-        const response = await fetch("http://localhost:5000/api/wallet", {
+        const response = await fetch(`${API_URL}/api/wallet`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

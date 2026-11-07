@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../api";
 import {
   ArrowLeft,
   Bell,
@@ -30,7 +31,7 @@ function Notifications() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/notifications", {
+      const response = await fetch(`${API_URL}/api/notifications`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -61,9 +62,7 @@ function Notifications() {
     setError("");
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/notifications/${id}/read`,
-        {
+      const response = await fetch(`${API_URL}/api/notifications/${id}/read`, {
           method: "PATCH",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -96,9 +95,7 @@ function Notifications() {
     setError("");
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/notifications/read-all",
-        {
+      const response = await fetch(`${API_URL}/api/notifications/read-all`, {
           method: "PATCH",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -131,9 +128,7 @@ function Notifications() {
     try {
       const notification = notifications.find((item) => item.id === id);
 
-      const response = await fetch(
-        `http://localhost:5000/api/notifications/${id}`,
-        {
+      const response = await fetch(`${API_URL}/api/notifications/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
