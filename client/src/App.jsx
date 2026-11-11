@@ -1,11 +1,14 @@
+import { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import SplashScreen from "./pages/SplashScreen";
 
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import AddMoney from "./pages/AddMoney";
 import SendMoney from "./pages/SendMoney";
 import TransactionDetails from "./pages/TransactionDetails";
@@ -18,12 +21,27 @@ import Support from "./pages/Support";
 import Transactions from "./pages/Transactions";
 import Services from "./pages/Services";
 import Notifications from "./pages/Notifications";
+import Onboarding from "./pages/Onboarding";
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSplash) {
+    return <SplashScreen />;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Onboarding />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/login" element={<Login />} />

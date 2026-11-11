@@ -1,0 +1,191 @@
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* GoodPay onboarding background */
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(37, 99, 235, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(14, 165, 233, 0.1),
+      transparent 30%
+    ),
+    #f7f9fd;
+
+  color: #20212a;
+  z-index: 9999;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Logo entrance animation */
+.splash-logo-wrapper {
+  opacity: 0;
+  transform: scale(0.75) translateY(20px);
+  animation: logoEntrance 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.splash-logo {
+  display: block;
+  width: 230px;
+  max-width: 75vw;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 25px rgba(73, 42, 195, 0.12));
+}
+
+/* Tagline */
+.splash-tagline {
+  margin-top: 20px;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  color: #85889a;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: taglineEntrance 0.6s ease forwards;
+  animation-delay: 0.45s;
+}
+
+/* Loading indicator */
+.splash-loader {
+  display: flex;
+  gap: 7px;
+  margin-top: 38px;
+}
+
+.splash-loader span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #01b882;
+  animation: loaderPulse 0.9s ease-in-out infinite;
+}
+
+.splash-loader span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.splash-loader span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Background glows */
+.splash-glow {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.08;
+  animation: glowFloat 5s ease-in-out infinite alternate;
+}
+
+.splash-glow-one {
+  background: #01b882;
+  top: -180px;
+  right: -100px;
+}
+
+.splash-glow-two {
+  background: #492ac3;
+  bottom: -200px;
+  left: -100px;
+  animation-delay: 1s;
+}
+
+/* Footer */
+.splash-footer {
+  position: absolute;
+  z-index: 2;
+  bottom: 38px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #85889a;
+  opacity: 0;
+  animation: taglineEntrance 0.6s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* Animations */
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.75) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes taglineEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loaderPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes glowFloat {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(35px, 25px);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .splash-logo {
+    width: 195px;
+  }
+
+  .splash-tagline {
+    font-size: 12px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen *,
+  .splash-screen *::before,
+  .splash-screen *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
